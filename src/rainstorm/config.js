@@ -1,6 +1,6 @@
 var development = {
     apiKeyClient: 'apikeyclient',
-    apiKeyRetaliation: 'apikeyretaliation',
+    apiKeyRainstorm: 'apikeyrainstorm',
     ipCluster: '192.168.10.52',
     portCluster: 3000,
     port: 3001
