@@ -1,21 +1,23 @@
 # Rainstorm ![logo][logo]
 [logo]: ./rainstorm-logo.png "logo title"
 
-## Database (mongo/docker)
+Check [Wiki](https://github.com/excilys/rainstorm/wiki) and [Glossary](https://github.com/excilys/rainstorm/wiki/Glossary) for more info
 
- - Requirements: `docker-compose`
- - Directory: `./docker/mongo`
- - Setup image and run container: `./build-up.sh`
+## General Requirements
 
-## Driver (python/flask)
+- NodeJs v6.x and build tools
+  - `curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -`
+  - `sudo apt-get install -y nodejs`
+  - `sudo apt-get install -y build-essential`
 
-- Requirements: `python 2.7`
-- Directory: `./driver`
-- Run setup: `./setup.sh`
-- Run server: `./rest-retaliation.py`
+## Driver
+- Global packages: `npm install -g gulp-cli`
+- Directory: `./src/driver`
+- Run setup: `npm install`
+- Run server: `gulp`
 
 ### USB permissions
-
+- Make sure us have those libs `sudo apt-get install libudev-dev libusb-1.0-0-dev`
 - Create `sudo vi /etc/udev/rules.d/99-garmin.rules`
 - Add `SUBSYSTEM=="usb", ATTR{idVendor}=="2123", ATTR{idProduct}=="1010", MODE="666"`
 - Unplug the missile launcher
@@ -24,23 +26,22 @@
 
 ### Authentication
 
-The api required a hard coded basic authentication:
+The api requires a hard coded basic authentication:
 - username: `yo`
 - password: `yo`
 
-### API
+### API [`DEPRECATED`]
 
 - [POST] `/api/move`: (x, y required) turn to the given position and come back.
 - [POST] `/api/shoot`: (x, y required) turn to the given position, shoot and come back.
 
 
-If the position is not accessible, a `Bad request` error message will be return.
+If the position is not accessible, a `Bad request` error message will be returned.
 After each movement the missile launcher gets back to its initial position.
 
-## Cluster (node)
+## Cluster
 
- - Requirements: `node` `npm` `nodemon`
- - Directory: `./cluster`
+ - Directory: `./src/cluster`
  - Install dependencies: `npm install`
  - Run server: `npm start` (use `nodemon`) or `node server` (use `node`)
 
@@ -53,9 +54,11 @@ After each movement the missile launcher gets back to its initial position.
  ### API
 
  - [GET/POST] `/api/users`: manage users.
- - [GET/POST/PUT/DELETE] `/api/retaliations`: manage retaliations.
+ - [GET/POST/PUT/DELETE] `/api/rainstorms`: manage rainstorms.
 
-## Client (electron)
+## Client [`DEPRECATED`] (electron)
+
+It will be updated as soon as the cluster and the rainstorm layer are stable
 
  - Requirements: `node` `npm` `bower`
  - Directory: `./client`
